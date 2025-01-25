@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>goit-js-hw-11</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div class="conteiner">
+      <form id="search-form" class="form">
+        <input
+          type="text"
+          class="input"
+          name="query"
+          id="search-input"
+          placeholder="Enter search query"
+          required
+        />
+        <button type="submit" class="button">Search</button>
+      </form>
+      <ul class="gallery"></ul>
+      <span class="loader">Loading images, please wait...</span>
+      <button type="button" class="btn">Load more</button>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
