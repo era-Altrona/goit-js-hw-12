@@ -64,7 +64,7 @@ img {
   border: 1px solid #4e75ff;
 }
 
-.button {height: 50px;
+button {height: 50px;
   padding: 0 20px;
   font-size: 16px;
   border: none;
@@ -75,7 +75,7 @@ img {
   transition: background-color .3s ease;
 }
 
-.button:hover {
+button:hover {
   background-color: #6c8cff;
 }
 .gallery {
@@ -114,29 +114,4 @@ img {
   line-height: 24px;
   letter-spacing: 0.04em;
   text-align: center;
-  color: #2e2f42;
-}
-.btn {
-  display: block;
-  width: 125px;
-  height: 40px;
-  padding: 8px auto;
-  border-radius: 8px;
-  opacity: 0px;
-  background-color: #4e75ff;
-  border: none;
-  outline: none;
-  margin-top: 32px;
-  margin-left: 526px;
-
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.5;
-  letter-spacing: 0.04em;
-  text-align: center;
-  color: #ffffff;
-}
-
-.btn:hover {
-  background-color: #6c8cff;
 }

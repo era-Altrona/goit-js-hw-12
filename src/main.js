@@ -61,7 +61,7 @@ btn.addEventListener('click', async () => {
   } catch (error) {
   iziToast.error({
     position: "topRight",
-    message: `An error occurred: ${error.message}`,
+    message: error.message,
   });
   } finally {
     btn.disabled = false;
@@ -118,7 +118,10 @@ if (totalHits > limit) {
       }
     }
   } catch (error) {
-    showError(error.message);
+  iziToast.error({
+       position: "topRight",
+      message: error.message,
+    })
   } finally {
     loader.style.display = 'none';
     form.reset();
