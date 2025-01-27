@@ -10,7 +10,6 @@ export function serviceImages(question) {
     orientation: 'horizontal',
     safesearch: true,
     per_page: 15,
-    page: page,
   });
 
   return fetch(`${BASE_URL}?${params}`).then(response => {
