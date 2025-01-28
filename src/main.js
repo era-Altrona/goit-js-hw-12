@@ -22,7 +22,13 @@ btn.style.display = "none";
 let question = '';
 let page = 1;
 let limit = 15;
-let totalHits =0;
+let totalHits = 0;
+
+const galleryModal = new SimpleLightbox('.gallery a', {
+  captions: true,
+  captionsData: 'alt',
+  captionDelay: 250,
+});
 
 btn.addEventListener('click', async () => {
   page += 1;
@@ -35,8 +41,8 @@ btn.addEventListener('click', async () => {
     totalHits = data.totalHits;
 
     if (data.hits.length > 0) {
-      galleryModal.refresh();
       gallery.insertAdjacentHTML('beforeend', createGallery(data.hits));
+      galleryModal.refresh();
     }
 
     if (page * limit >= totalHits) {
@@ -69,11 +75,6 @@ btn.addEventListener('click', async () => {
 }
 })
 
-const galleryModal = new SimpleLightbox('.gallery a', {
-  captions: true,
-  captionsData: 'alt',
-  captionDelay: 250,
-});
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();

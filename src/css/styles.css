@@ -115,3 +115,23 @@ button:hover {
   letter-spacing: 0.04em;
   text-align: center;
 }
+.btn {
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    margin: 32px auto;
+    width: 125px;
+    height: 40px;
+    background: #4e75ff;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: .04em;
+    color: #fff;
+  }
+
