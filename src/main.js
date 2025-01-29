@@ -29,6 +29,10 @@ const galleryModal = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
+function updateGallery(hits) {
+  gallery.insertAdjacentHTML('beforeend', createGallery(hits));
+  galleryModal.refresh();
+}
 
 btn.addEventListener('click', async () => {
   page += 1;
@@ -108,9 +112,8 @@ try {
       position: 'topCenter',
     });
   }
- else {
-  gallery.insertAdjacentHTML('beforeend', createGallery(data.hits));
-  galleryModal.refresh();
+  else {
+      updateGallery(data.hits);
 
 if (totalHits > limit) {
         btn.style.display = 'inline-block';
