@@ -2,7 +2,7 @@
 const API_KEY = '48362167-980900dd24403cbb12294ed40';
 const BASE_URL = 'https://pixabay.com/api/';
 
-export function serviceImages(question) {
+export function serviceImages(question, page) {
   const params = new URLSearchParams({
     key: API_KEY,
     q: question,
@@ -10,6 +10,7 @@ export function serviceImages(question) {
     orientation: 'horizontal',
     safesearch: true,
     per_page: 15,
+    page,
   });
 
   return fetch(`${BASE_URL}?${params}`).then(response => {

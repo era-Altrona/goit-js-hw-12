@@ -24,7 +24,6 @@ let page = 1;
 let limit = 15;
 let totalHits = 0;
 
-// Ініціалізація модального вікна
 const galleryModal = new SimpleLightbox('.gallery a', { 
   captions: true,
   captionsData: 'alt',
@@ -47,20 +46,9 @@ btn.addEventListener('click', async () => {
     const hits = data.hits;
     totalHits = data.totalHits;
 
-    if (data.hits.length > 0) {
-      gallery.insertAdjacentHTML('beforeend', createGallery(data.hits));
-      galleryModal.refresh();
-    }
-
-    if (data.hits.length === 0) {
-      btn.style.display = "none";
-      iziToast.error({
-        position: "topRight",
-        message: "We're sorry, but you've reached the end of search results.",
-      });
-    } else {
-      btn.style.display = "inline-block";
-    }
+    updateGallery(hits);
+    
+   
   
     const galleryItem = document.querySelector('.gallery-item');
 
@@ -70,6 +58,16 @@ btn.addEventListener('click', async () => {
         top: cardHeight * 2,
         behavior: 'smooth',
       });
+    }
+     if (Math.ceil(totalHits / limit) === page) {
+      btn.style.display = 'none';
+      iziToast.show({
+      title: '',
+      backgroundColor: '#EF4040',
+      messageColor: '#FFFFFF',
+      message: `Sorry, there are no images matching your search query. Please try again!`,
+      position: 'topCenter',
+    });
     }
   } catch (error) {
   iziToast.error({
@@ -99,9 +97,6 @@ form.addEventListener('submit', async (event) => {
     return;
   }
 
-
-  loader.style.display = 'inline-block';
-
 try {
   const data = await serviceImages(question, page);
   totalHits = data.totalHits;
@@ -115,17 +110,18 @@ try {
       message: `Sorry, there are no images matching your search query. Please try again!`,
       position: 'topCenter',
     });
+    btn.style.display = 'none';
+    return;
   }
-  else {
-      updateGallery(data.hits);
-
+  updateGallery(data.hits);
+  
 if (totalHits > limit) {
         btn.style.display = 'inline-block';
       } else {
         btn.style.display = 'none';
       }
     }
-  } catch (error) {
+   catch (error) {
   iziToast.error({
        position: "topRight",
       message: error.message,
