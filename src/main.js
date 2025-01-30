@@ -24,11 +24,14 @@ let page = 1;
 let limit = 15;
 let totalHits = 0;
 
-const galleryModal = new SimpleLightbox('.gallery a', {
+// Ініціалізація модального вікна
+const galleryModal = new SimpleLightbox('.gallery a', { 
   captions: true,
   captionsData: 'alt',
   captionDelay: 250,
 });
+
+
 function updateGallery(hits) {
   gallery.insertAdjacentHTML('beforeend', createGallery(hits));
   galleryModal.refresh();
@@ -41,7 +44,7 @@ btn.addEventListener('click', async () => {
 
   try {
     const data = await serviceImages(question, page);
-    
+    const hits = data.hits;
     totalHits = data.totalHits;
 
     if (data.hits.length > 0) {
@@ -49,7 +52,7 @@ btn.addEventListener('click', async () => {
       galleryModal.refresh();
     }
 
-    if (page * limit >= totalHits) {
+    if (data.hits.length === 0) {
       btn.style.display = "none";
       iziToast.error({
         position: "topRight",
@@ -83,8 +86,8 @@ btn.addEventListener('click', async () => {
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
   question = event.target.elements.query.value.trim();
-  gallery.innerHTML = '';
   page = 1;
+  gallery.innerHTML = '';
 
   if (!question) {
     iziToast.show({
@@ -104,6 +107,7 @@ try {
   totalHits = data.totalHits;
   
   if (data.hits.length === 0) {
+   
     iziToast.show({
       title: '',
       backgroundColor: '#EF4040',

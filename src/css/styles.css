@@ -64,7 +64,8 @@ img {
   border: 1px solid #4e75ff;
 }
 
-button {height: 50px;
+button {
+  height: 50px;
   padding: 0 20px;
   font-size: 16px;
   border: none;
